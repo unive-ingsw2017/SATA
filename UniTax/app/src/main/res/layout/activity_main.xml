@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,8 +11,40 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.tommik.unitax.MainActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        app:srcCompat="@drawable/universita_ca_foscari"
+        android:id="@+id/imageView2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="" />
+
+    <TextView
+        android:text="@string/first_screen_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:textColor="@color/uniTaxPrimary"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_above="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp" />
+
+    <TextView
+        android:text="@string/first_screen_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:textColor="@color/uniTaxPrimary"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_marginTop="26dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/imageView2"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -6,21 +6,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-<<<<<<< HEAD
-import java.io.File;
 import java.io.FileNotFoundException;
-=======
->>>>>>> master
 import java.io.FileReader;
 import java.util.List;
 
 import it.unive.dais.cevid.datadroid.lib.parser.CsvRowParser;
 
-<<<<<<< HEAD
-;
-
-=======
->>>>>>> master
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -30,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
         FileReader file = null;
         try {
             file = new FileReader("be1618.csv");
@@ -40,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         CsvRowParser parser = new CsvRowParser(file, true, ";");
-=======
-        CsvRowParser parser = new CsvRowParser(new FileReader("be1618.csv"), true, ";");
->>>>>>> master
+
         List<CsvRowParser.Row> rows = parser.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
         for (CsvRowParser.Row row : rows) {
             String id = row.get("ID"), nome = row.get("NAME");

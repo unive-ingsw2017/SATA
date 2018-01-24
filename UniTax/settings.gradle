@@ -1,1 +1,2 @@
-include ':app'
+include ':app', ':datadroid'
+project(':datadroid').projectDir = new File('libs/Datadroid/lib')

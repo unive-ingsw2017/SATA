@@ -1,18 +1,20 @@
 package com.example.tommik.unitax;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import it.unive.dais.cevid.datadroid.lib.parser.CsvRowParser;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,30 +22,33 @@ public class MainActivity extends AppCompatActivity {
         final int TIME_OUT = 4000;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        InputStream is = getResources().openRawResource(R.raw.be1618);
 
-        FileReader file = null;
+        CsvRowParser parser = new CsvRowParser(new InputStreamReader(is), true, ";");
+        Log.d(TAG, "    quiiiiiiiiiiiiiiiiiiiiiiii");
+        List<CsvRowParser.Row> rows = null;
         try {
-            file = new FileReader("be1618.csv");
-        } catch (FileNotFoundException e) {
+            rows = parser.getAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        Log.d(TAG, "    quiiiiiiiiiiiiiiiiiiiiiiii");
+        if(rows != null) {
 
-
-        CsvRowParser parser = new CsvRowParser(file, true, ";");
-
-        List<CsvRowParser.Row> rows = parser.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
-        for (CsvRowParser.Row row : rows) {
-            String id = row.get("ID"), nome = row.get("NAME");
-            // fai qualcosa con id e nome
+            for (CsvRowParser.Row row : rows) {
+                String id = row.get("2016"), nome = row.get("2017");
+                Log.d(TAG, id);
             }
-
-        new Handler().postDelayed(new Runnable() {
+        }
+        /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 Intent i = new Intent(MainActivity.this, TutorialActivity.class);
                 startActivity(i);
                 finish();
             }
-        }, TIME_OUT);
+        }, TIME_OUT);*/
     }
 }

@@ -1,2 +1,2 @@
 include ':app', ':datadroid'
-project(':datadroid').projectDir = new File('libs/Datadroid/lib')
+project(':datadroid').projectDir = new File('libs/lib')

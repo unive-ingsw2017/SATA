@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://D:\AndroidStudioProjects\SATA\UniTax\libs\Datadroid\lib\Datadroid-datadroid.iml" filepath="D:\AndroidStudioProjects\SATA\UniTax\libs\Datadroid\lib\Datadroid-datadroid.iml" />
       <module fileurl="file://$PROJECT_DIR$/UniTax.iml" filepath="$PROJECT_DIR$/UniTax.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/libs/Datadroid/lib/datadroid.iml" filepath="$PROJECT_DIR$/libs/Datadroid/lib/datadroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/lib/datadroid.iml" filepath="$PROJECT_DIR$/libs/lib/datadroid.iml" />
+      <module fileurl="file://D:\AndroidStudioProjects\SATA\UniTax\libs\Datadroid\lib\datadroid.iml" filepath="D:\AndroidStudioProjects\SATA\UniTax\libs\Datadroid\lib\datadroid.iml" />
     </modules>
   </component>
 </project>

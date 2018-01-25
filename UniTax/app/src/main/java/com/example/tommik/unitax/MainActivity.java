@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
         final int TIME_OUT = 4000;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        InputStream is = getResources().openRawResource(R.raw.be1618);
+        InputStream is = getResources().openRawResource(R.raw.costi_personale1719);
 
-        CsvRowParser parser = new CsvRowParser(new InputStreamReader(is), true, ";");
+        CsvRowParser parser = new CsvRowParser(new InputStreamReader(is), true, ",");
         List<CsvRowParser.Row> rows = null;
         try {
             rows = parser.getAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
@@ -33,14 +33,21 @@ public class MainActivity extends AppCompatActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Log.d(TAG, "    quiiiiiiiiiiiiiiiiiiiiiiii");
+
         if(rows != null) {
 
             for (CsvRowParser.Row row : rows) {
-                String id = row.get("2016"), nome = row.get("2017");
-                Log.d(TAG, id);
+
+                String id =  row.get("costi del personale");
+                String nome = row.get("2017");
+                Log.d(TAG,nome + ":   " + id);
             }
+
+
         }
+
+
+
         /*new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

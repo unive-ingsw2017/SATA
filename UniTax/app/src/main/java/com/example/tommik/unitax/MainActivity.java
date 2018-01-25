@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         InputStream is = getResources().openRawResource(R.raw.be1618);
 
         CsvRowParser parser = new CsvRowParser(new InputStreamReader(is), true, ";");
-        Log.d(TAG, "    quiiiiiiiiiiiiiiiiiiiiiiii");
         List<CsvRowParser.Row> rows = null;
         try {
             rows = parser.getAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();

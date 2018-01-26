@@ -4,4 +4,6 @@
     <string name="first_screen_text2">TAX</string>
     <string name="Tutoria_token">TUTORIAL: POTREMMO FARLO SLIDING WINDOW CON SCREENSHOT DELLE SCHERMATE</string>
     <string name="app_logo">this is the logo of the app</string>
+    <string name="selectuni">selectuni</string>
+    <string name="textview">TextView</string>
 </resources>

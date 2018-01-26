@@ -6,4 +6,11 @@
     <string name="app_logo">this is the logo of the app</string>
     <string name="selectuni">selectuni</string>
     <string name="textview">TextView</string>
+    <string name="calcola_tasse">calcola tasse</string>
+    <string name="tasse">Tasse</string>
+    <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
+    <string name="textview">TextView</string>
+    <string name="informazioni_universit">Informazioni università</string>
+    <string name="textview">TextView</string>
+    <string name="nome_universit">Nome università</string>
 </resources>

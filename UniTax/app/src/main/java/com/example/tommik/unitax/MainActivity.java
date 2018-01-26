@@ -1,7 +1,9 @@
 package com.example.tommik.unitax;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        final Handler handler;
         final int TIME_OUT = 4000;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -48,13 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        /*new Handler().postDelayed(new Runnable() {
+        handler=new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, TutorialActivity.class);
+                Intent i = new Intent(MainActivity.this, SelectUniActivity.class);
                 startActivity(i);
                 finish();
             }
-        }, TIME_OUT);*/
+        }, TIME_OUT);
     }
 }

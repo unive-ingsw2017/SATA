@@ -11,10 +11,12 @@
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
 
     <string name="informazioni_universit">Informazioni università</string>
+    <string name="select_uni"> Seleziona la tua università</string>
 
     <string name="nome_universit">Nome università</string>
     <string name="textselecuni">TextSelecUni</string>
     <string name="textnomeuni">TextNomeUni</string>
     <string name="textinfouni">TextInfoUni</string>
 
+    <string name="spinner">[Seleziona un università...]</string>
 </resources>

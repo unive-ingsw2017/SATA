@@ -1,16 +1,20 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">UniTax</string>
     <string name="first_screen_text1">UNI</string>
     <string name="first_screen_text2">TAX</string>
     <string name="Tutoria_token">TUTORIAL: POTREMMO FARLO SLIDING WINDOW CON SCREENSHOT DELLE SCHERMATE</string>
     <string name="app_logo">this is the logo of the app</string>
     <string name="selectuni">selectuni</string>
-    <string name="textview">TextView</string>
+
     <string name="calcola_tasse">calcola tasse</string>
     <string name="tasse">Tasse</string>
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
-    <string name="textview">TextView</string>
+
     <string name="informazioni_universit">Informazioni università</string>
-    <string name="textview">TextView</string>
+
     <string name="nome_universit">Nome università</string>
+    <string name="textselecuni">TextSelecUni</string>
+    <string name="textnomeuni">TextNomeUni</string>
+    <string name="textinfouni">TextInfoUni</string>
+
 </resources>

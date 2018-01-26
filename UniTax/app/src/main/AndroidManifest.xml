@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/cf_icon"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/UniTaxTheme">
@@ -15,7 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TutorialActivity"></activity>
+        <activity android:name=".TutorialActivity" />
+        <activity android:name=".SelectUniActivity" />
+        <activity android:name=".InfoUni" />
+        <activity android:name=".DataTax" />
+        <activity android:name=".ResultTax"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.example.tommik.unitax;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 public class SelectUniActivity extends Activity {
 
     ListView listView ;
+    String  itemValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,7 @@ public class SelectUniActivity extends Activity {
                 int itemPosition     = position;
 
                 // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
+                itemValue    = (String) listView.getItemAtPosition(position);
 
                 // Show Alert
                 Toast.makeText(getApplicationContext(),
@@ -80,6 +82,12 @@ public class SelectUniActivity extends Activity {
             }
 
         });
+    }
+
+    public void sendName(View view) {
+        Intent intent = new Intent(this, InfoUniActivity.class);
+        intent.putExtra("NOME_UNI",itemValue);
+        startActivity(intent);
     }
 
 }

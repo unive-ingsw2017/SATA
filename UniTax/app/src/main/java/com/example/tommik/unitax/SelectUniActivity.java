@@ -14,8 +14,9 @@ import android.widget.Toast;
 
 public class SelectUniActivity extends Activity {
 
-    ListView listView ;
-    String  itemValue;
+    private ListView listView ;
+    private int itemPosition;
+    private String  itemValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,20 @@ public class SelectUniActivity extends Activity {
                 // Get the Item from ListView
                 View view = super.getView(position, convertView, parent);
 
+
                 // Initialize a TextView for ListView each Item
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
+
+                //Dovrebbe colorare l'elemento selezionato
+                if (position == itemPosition) {
+                    tv.setBackgroundColor(Color.RED);
+                }
 
                 // Set the text color of TextView (ListView Item)
                 tv.setTextColor(Color.BLACK);
                 tv.setTextSize(22);
+
+
 
                 // Generate ListView Item using TextView
                 return view;
@@ -69,7 +78,7 @@ public class SelectUniActivity extends Activity {
                                     int position, long id) {
 
                 // ListView Clicked item index
-                int itemPosition     = position;
+                itemPosition     = position;
 
                 // ListView Clicked item value
                 itemValue    = (String) listView.getItemAtPosition(position);
@@ -82,6 +91,7 @@ public class SelectUniActivity extends Activity {
             }
 
         });
+        //adapter.notifyDataSetChanged();
     }
 
     public void sendName(View view) {

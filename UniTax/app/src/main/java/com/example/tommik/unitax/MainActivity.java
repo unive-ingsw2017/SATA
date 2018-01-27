@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         final Handler handler;
-        final int TIME_OUT = 4000;
+        final int TIME_OUT = 1500;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         InputStream is = getResources().openRawResource(R.raw.costi_personale1719);

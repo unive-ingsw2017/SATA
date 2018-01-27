@@ -24,8 +24,10 @@ public class SelectUniActivity extends Activity {
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
-        String[] values = new String[] { "Ca Foscari",
-                "UniPD"
+        String[] values = new String[] {
+                "Ca Foscari",
+                "UniPD",
+                "UniVR"
         };
 
         // Define a new Adapter
@@ -46,6 +48,7 @@ public class SelectUniActivity extends Activity {
 
                 // Set the text color of TextView (ListView Item)
                 tv.setTextColor(Color.BLACK);
+                tv.setTextSize(22);
 
                 // Generate ListView Item using TextView
                 return view;

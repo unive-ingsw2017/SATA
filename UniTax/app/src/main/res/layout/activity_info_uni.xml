@@ -14,6 +14,7 @@
         android:layout_marginTop="8dp"
         android:contentDescription="@string/nome_universit"
         android:text="@string/nome_universit"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -1,6 +1,7 @@
 package it.unive.dais.cevid.datadroid.lib.parser;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -115,6 +116,8 @@ public class CsvRowParser extends AbstractAsyncCsvParser<CsvRowParser.Row> {
             String[] h = getHeader();
             for (int i = 0; i < h.length; i++) {
                 String s = trimString(h[i]);
+                Log.d(TAG,Integer.toString(s.length()));
+                Log.d(TAG,Integer.toString(column.length()));
                 if (s.equalsIgnoreCase(column)) {
                     return i;
                 }

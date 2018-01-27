@@ -28,4 +28,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.4.0'
     testCompile 'junit:junit:4.12'
     implementation project(':datadroid')
+
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }

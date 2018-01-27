@@ -5,14 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-
-import it.unive.dais.cevid.datadroid.lib.parser.CsvRowParser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +18,8 @@ public class MainActivity extends AppCompatActivity {
         final int TIME_OUT = 1500;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        InputStream is = getResources().openRawResource(R.raw.costi_personale1719);
+        Intent i = new Intent(MainActivity.this, InfoUni.class);
+        startActivity(i);
 
         CsvRowParser parser = new CsvRowParser(new InputStreamReader(is), true, ",");
         List<CsvRowParser.Row> rows = null;

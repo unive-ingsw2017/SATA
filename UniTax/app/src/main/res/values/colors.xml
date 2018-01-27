@@ -5,4 +5,5 @@
     <color name="colorAccent">#4070ff</color>
     <color name="uniTaxPrimary">#ffcc0000</color>
     <color name="uniTaxPrimaryDark">#FF8E0000</color>
+    <color name="black">#000000</color>
 </resources>

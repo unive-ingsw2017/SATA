@@ -4,19 +4,19 @@
     <string name="first_screen_text2">TAX</string>
     <string name="Tutoria_token">TUTORIAL: POTREMMO FARLO SLIDING WINDOW CON SCREENSHOT DELLE SCHERMATE</string>
     <string name="app_logo">this is the logo of the app</string>
-    <string name="selectuni">selectuni</string>
 
-    <string name="calcola_tasse">calcola tasse</string>
-    <string name="tasse">Tasse</string>
-    <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
-
-    <string name="informazioni_universit">Informazioni università</string>
+    <!--Stringhe activity_select-uni.xml-->
     <string name="select_uni"> Seleziona la tua università</string>
-
-    <string name="nome_universit">Nome università</string>
-    <string name="textselecuni">TextSelecUni</string>
-    <string name="textnomeuni">TextNomeUni</string>
-    <string name="textinfouni">TextInfoUni</string>
-
     <string name="spinner">[Seleziona un università...]</string>
+    <string name="invia_uni_selezionata">invia uni selezionata</string>
+    <string name="ok">Ok</string>
+
+    <!--Stringhe activity_info_uni.xml -->
+    <string name="nome_universit">Nome università</string>
+    <string name="informazioni_universit">Informazioni università</string>
+    <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
+    <string name="calcola_tasse">calcola tasse</string>
+
+
+
 </resources>

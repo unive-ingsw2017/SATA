@@ -3,7 +3,7 @@ package com.example.tommik.unitax;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class DataTax extends AppCompatActivity {
+public class DataTaxActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

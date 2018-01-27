@@ -3,11 +3,11 @@ package com.example.tommik.unitax;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ResultTax extends AppCompatActivity {
+public class InfoUniActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result_tax);
+        setContentView(R.layout.activity_info_uni);
     }
 }

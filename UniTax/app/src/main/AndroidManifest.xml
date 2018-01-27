@@ -17,9 +17,9 @@
         </activity>
         <activity android:name=".TutorialActivity" />
         <activity android:name=".SelectUniActivity" />
-        <activity android:name=".InfoUni" />
-        <activity android:name=".DataTax" />
-        <activity android:name=".ResultTax"></activity>
+        <activity android:name=".InfoUniActivity" />
+        <activity android:name=".DataTaxActivity" />
+        <activity android:name=".ResultTaxActivity"></activity>
     </application>
 
 </manifest>

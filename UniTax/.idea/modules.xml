@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/UniTax.iml" filepath="$PROJECT_DIR$/UniTax.iml" />
+      <module fileurl="file://C:\Users\Alessandro\Desktop\SATA\UniTax\UniTax.iml" filepath="C:\Users\Alessandro\Desktop\SATA\UniTax\UniTax.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Alessandro\Desktop\SATA\UniTax\app\app.iml" filepath="C:\Users\Alessandro\Desktop\SATA\UniTax\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/lib/datadroid.iml" filepath="$PROJECT_DIR$/libs/lib/datadroid.iml" />
+      <module fileurl="file://C:\Users\Alessandro\Desktop\SATA\UniTax\libs\lib\datadroid.iml" filepath="C:\Users\Alessandro\Desktop\SATA\UniTax\libs\lib\datadroid.iml" />
     </modules>
   </component>
 </project>

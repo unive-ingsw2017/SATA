@@ -50,14 +50,6 @@ public class SelectUniActivity extends Activity {
                 // Initialize a TextView for ListView each Item
                 TextView tv = (TextView) view.findViewById(android.R.id.text1);
 
-                /*
-                //Dovrebbe colorare l'elemento selezionato
-                if (position == itemPosition) {
-                    tv.setBackgroundColor(Color.RED);
-                }
-                //tv.setTextColor(context.getResources().getColor(R.color.tab_text_selector));*/
-                // Set the text color of TextView (ListView Item)
-
                 tv.setTextColor(Color.BLACK);
                 tv.setTextSize(22);
 
@@ -87,8 +79,7 @@ public class SelectUniActivity extends Activity {
 
                 // Show Alert
                 Toast.makeText(getApplicationContext(),
-                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
+                        "Hai selezionato: " +itemValue , Toast.LENGTH_LONG).show();
 
             }
 

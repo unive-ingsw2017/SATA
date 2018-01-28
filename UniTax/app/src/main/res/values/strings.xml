@@ -14,6 +14,14 @@
     <!--Stringhe activity_info_uni.xml -->
     <string name="nome_universit">Nome università</string>
     <string name="informazioni_universit">Informazioni università</string>
+    <string name="insert_tax">Inserisci il valore delle tue tasse universitarie</string>
+    <string name="insert_tax_desc">Inserisci il valore delle tue tasse universitarie</string>
+    <string name="btn_tax">Guarda come vengono utilizzate</string>
+    <string name="btn_tax_desc">Info su come vengono utilizzate le tasse</string>
+    <string name="btn_tax_scon">Non sai quanto spendi?</string>
+    <string name="btn_tax_scon_desc">Link calcolo tasse</string>
+
+    <!--Stringhe per un altra activity-->
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
     <string name="calcola_tasse">calcola tasse</string>
 

@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tommik.unitax">
 
+    <!--
+        Se vogliamo forzare il portrait:  android:screenOrientation="portrait"
+    -->
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +23,7 @@
         <activity android:name=".SelectUniActivity" />
         <activity android:name=".InfoUniActivity" />
         <activity android:name=".DataTaxActivity" />
-        <activity android:name=".ResultTaxActivity"></activity>
+        <activity android:name=".ResultTaxActivity"/>
     </application>
 
 </manifest>

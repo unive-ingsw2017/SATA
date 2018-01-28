@@ -22,8 +22,22 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         tipo.add("Laurea magistrale / specialistica");
         tipo.add("Laurea magistrale / specialistica - Studente Part-Time");
 
-        ArrayAdapter<String> tipoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tipo);
+        ArrayAdapter<String> tipoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, tipo);
+        tipoAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
 
         tipoSpinner.setAdapter(tipoAdapter);
+
+        Spinner cittSpinner = (Spinner) findViewById(R.id.cittadinanza);
+        List<String> cittadinanza = new ArrayList<String>();
+        cittadinanza.add("Italiana, UE");
+        cittadinanza.add("extra UE con domicilio fiscale in Italia");
+        cittadinanza.add("extra UE");
+
+        ArrayAdapter<String> cittAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, cittadinanza);
+        cittAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        cittSpinner.setAdapter(cittAdapter);
     }
+
+
 }

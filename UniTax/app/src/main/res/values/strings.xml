@@ -21,6 +21,11 @@
     <string name="btn_tax_scon">Non sai quanto spendi?</string>
     <string name="btn_tax_scon_desc">Link calcolo tasse</string>
 
+    <!-- Stringhe CalcoloTasseActivity -->
+    <string name="tipologiacorso">Tipologia corso di studio</string>
+    <string name="citt">Cittadinanza</string>
+
+
     <!--Stringhe per un altra activity-->
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
     <string name="calcola_tasse">calcola tasse</string>

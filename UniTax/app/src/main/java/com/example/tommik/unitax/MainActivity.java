@@ -1,7 +1,6 @@
 package com.example.tommik.unitax;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         final int TIME_OUT = 1500;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Intent i = new Intent(MainActivity.this, InfoUni.class);
+       /* Intent i = new Intent(MainActivity.this, InfoUniActivity.class);
         startActivity(i);
 
         CsvRowParser parser = new CsvRowParser(new InputStreamReader(is), true, ",");
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-        }
+        }*/
 
 
 

@@ -55,7 +55,76 @@ public class CalcoloTaxActivity extends AppCompatActivity {
     }
 
 
+
 }
+
+/*public class CalcoloTaxActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calcolo_tax);
+
+        final Spinner tipoSpinner = (Spinner) findViewById(R.id.tipologiacorso);
+        final List<String> tipo = new ArrayList<String>();
+        tipo.add("Laurea");
+        tipo.add("Laurea - Studente Part-Time");
+        tipo.add("Laurea magistrale / specialistica");
+        tipo.add("Laurea magistrale / specialistica - Studente Part-Time");
+
+
+        ArrayAdapter<String> tipoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, tipo);
+        tipoAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        final Spinner annoSpinner = (Spinner) findViewById(R.id.anno);
+        final List<String> anno = new ArrayList<String>();
+
+        tipoSpinner.setAdapter(tipoAdapter);
+        tipoSpinner.getOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int val=tipoSpinner.getSelectedItemPosition();
+                if(val==0||val==2){
+                    anno.add("1");
+                    anno.add("2");
+                    anno.add("3");
+                    anno.add("4 e oltre");
+                }
+                else{
+
+                    anno.add("1");
+                    anno.add("2");
+                    anno.add("3");
+                    anno.add("4");
+                    anno.add("5");
+                    anno.add("6");
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+
+        Spinner cittSpinner = (Spinner) findViewById(R.id.cittadinanza);
+        List<String> cittadinanza = new ArrayList<String>();
+        cittadinanza.add("Italiana, UE");
+        cittadinanza.add("extra UE con domicilio fiscale in Italia");
+        cittadinanza.add("extra UE");
+
+        ArrayAdapter<String> cittAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, cittadinanza);
+        cittAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
+        cittSpinner.setAdapter(cittAdapter);
+    }
+
+
+}
+*/
 
 /*public class CalcoloTaxActivity extends AppCompatActivity {
 

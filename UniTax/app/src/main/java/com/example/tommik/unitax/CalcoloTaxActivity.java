@@ -1,5 +1,110 @@
 package com.example.tommik.unitax;
 
+//WORK IN PROGRESS
+
+/*public class CalcoloTaxActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_calcolo_tax);
+
+
+        //dichiaro gli spinner
+        Spinner tipoSpinner = (Spinner) findViewById(R.id.tipologiacorso);
+        Spinner annoSpinner = (Spinner) findViewById(R.id.anno);
+        Spinner cittSpinner = (Spinner) findViewById(R.id.cittadinanza);
+
+
+        //dichiaro i valori degli spinner
+        List<String> tipo = new ArrayList<String>();
+        tipo.add("Laurea");
+        tipo.add("Laurea - Studente Part-Time");
+        tipo.add("Laurea magistrale / specialistica");
+        tipo.add("Laurea magistrale / specialistica - Studente Part-Time");
+
+        final List<String> anno0 = new ArrayList<String>();
+        anno0.add("1");
+        anno0.add("2");
+        anno0.add("3");
+        anno0.add("4 e oltre");
+
+
+        final List<String> anno1 = new ArrayList<String>();
+        anno1.add("1");
+        anno1.add("2");
+        anno1.add("3");
+        anno1.add("4");
+        anno1.add("5");
+        anno1.add("6");
+
+        List<String> cittadinanza = new ArrayList<String>();
+        cittadinanza.add("Italiana, UE");
+        cittadinanza.add("extra UE con domicilio fiscale in Italia");
+        cittadinanza.add("extra UE");
+
+        ArrayAdapter<String> tipoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, tipo);
+        tipoAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        tipoSpinner.setAdapter(tipoAdapter);
+
+        tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position==0 || position ==2){
+                    ArrayAdapter<String> annoAdapter = new ArrayAdapter<String>(CalcoloTaxActivity.this, R.layout.spinner_item, anno0);
+                }
+                else{
+                    ArrayAdapter<String> annoAdapter = new ArrayAdapter<String>(CalcoloTaxActivity.this, R.layout.spinner_item, anno1);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        //dichiaro e inizializzo adapter
+
+
+
+
+        ArrayAdapter<String> annoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, anno);
+        annoAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        annoSpinner.setAdapter(annoAdapter);
+
+        ArrayAdapter<String> cittAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, cittadinanza);
+        cittAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        cittSpinner.setAdapter(cittAdapter);
+    }
+
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        Toast.makeText(CalcoloTaxActivity.this,
+                "OnClickListener : " +
+                        "\nSpinner 1 : " +
+                        String.valueOf(tipoSpinner.getSelectedItem()),
+                Toast.LENGTH_SHORT).show();
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        //T O D O Auto-generated method stub
+    }
+
+
+}
+
+*/
+
+
+
+/*QUESTA VA*/
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;

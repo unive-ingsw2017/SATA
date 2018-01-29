@@ -14,9 +14,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class CalcoloTaxActivity extends AppCompatActivity {
 
@@ -29,51 +31,36 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calcolo_tax);
 
+        //Inizializzo gli elementi del layout
         final TextView tv_merito=(TextView)findViewById(R.id.tv_merito);
-
         final CheckBox merito=(CheckBox) findViewById(R.id.checkMerito);
-
         final EditText isee=(EditText)findViewById(R.id.edit_ISEE);
-
         final Button calISEE=(Button)findViewById(R.id.calISEE);
-
-
-
-        //dichiaro gli spinner
+        final Button calcola=(Button)findViewById(R.id.Calcola);
         final Spinner tipoSpinner = (Spinner) findViewById(R.id.tipologiacorso);
         final Spinner annoSpinner = (Spinner) findViewById(R.id.anno);
         final Spinner cittSpinner = (Spinner) findViewById(R.id.cittadinanza);
 
-
-        //dichiaro i valori degli spinner
-        List<String> tipo = new ArrayList<String>();
-        final List<String> anno = new ArrayList<String>();
-        List<String> cittadinanza = new ArrayList<String>();
-
-
-        ArrayAdapter<String> tipoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, tipo);
-
-        final ArrayAdapter<String> annoAdapter=new ArrayAdapter<String>(this, R.layout.spinner_item,anno);;
-
-
-        final ArrayAdapter<String> cittAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, cittadinanza);
-
+        //Creo gli array che conterranno i valori degli spinner
+        final List<String> tipo = new ArrayList<String>();
         tipo.add("Laurea");
         tipo.add("Laurea - Studente Part-Time");
         tipo.add("Laurea magistrale / specialistica");
         tipo.add("Laurea magistrale / specialistica - Studente Part-Time");
-
+        final List<String> anno = new ArrayList<String>();
         anno.add("1");
         anno.add("2");
         anno.add("3");
         anno.add("4 e oltre");
-
-
-
-
+        final List<String> cittadinanza = new ArrayList<String>();
         cittadinanza.add("Italiana, UE");
         cittadinanza.add("extra UE con domicilio fiscale in Italia");
         cittadinanza.add("extra UE");
+
+        //Creo adapter per gli spinner
+        final ArrayAdapter<String> tipoAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, tipo);
+        final ArrayAdapter<String> annoAdapter=new ArrayAdapter<String>(this, R.layout.spinner_item,anno);;
+        final ArrayAdapter<String> cittAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, cittadinanza);
 
         tipoAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         tipoSpinner.setAdapter(tipoAdapter);
@@ -82,9 +69,12 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         cittAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         cittSpinner.setAdapter(cittAdapter);
 
+        isee.setTextColor(R.color.black);
 
+        //faccio un override per i metodi on click così quando clicco su un elemento fa quello che voglio
 
-       tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        //Se seleziono un item sul tipo di corso cambia il valore degli anni
+        tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //int item =tipoSpinner.getSelectedItemPosition();
@@ -129,6 +119,8 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 //Another interface callback
             }
         });
+
+        //Se seleziono un valore sullo spinner anno vedo o meno la checkbox di merito
         annoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -236,6 +228,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             }
         });
 
+        //Se seleziono extraeuropeo scompare l'inserimento dell'isee e il bottone per calcolarlo
         cittSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -255,7 +248,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 //Another interface callback
             }
         });
-
+        //Se premo sul bottone calcolca isee mi si apre la pagina con il simulatore per il calcolo dell'isee
         calISEE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -264,20 +257,103 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             }
         });
 
+       calcola.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float val_isee=Float.parseFloat(isee.getText().toString());
+                int tipo=tipoSpinner.getSelectedItemPosition();
+                int citt=cittSpinner.getSelectedItemPosition();
+                boolean mer=merito.isChecked();
+                float importo=calcola(val_isee,tipo,citt,mer);
+                Toast.makeText(CalcoloTaxActivity.this,"Tasse calcolate: "+importo, Toast.LENGTH_SHORT).show();
 
-
-
-
-
-
-
-
-
+            }
+        });
 
     }
 
 
+    public float calcola(float isee, int tipo, int citt,boolean merito){
+        float importo=0;
+        float VCMax;
+        float VCMin;
+        float VMaxIsee;
+        float VMinIsee;
 
+        if(citt==2){
+            importo=1900;
+            if(tipo==2||tipo==3)
+                importo=2100;
+            if(tipo==1 || tipo==3){
+                importo=(((importo-166-16)/100)*65)+166+16;
+            }
+
+        }
+
+        if(isee>0&&isee<=1300){
+            importo=166+16;
+        }
+
+        if(isee>13000&&isee<=25500){
+            VMaxIsee=25500;
+            VMinIsee=13001;
+            VCMin=0;
+            VCMax=875;
+            importo=VCMax-((VCMax-VCMin)*(VMaxIsee-isee)/(VMaxIsee-VMinIsee));
+            if(tipo==1 || tipo==3){
+                importo=(importo/100)*65;
+            }
+            importo=importo+166+16;
+
+        }
+        if(isee>25500&&isee<=30000){
+            VMaxIsee=30000;
+            VMinIsee=25501;
+            VCMin=875;
+            VCMax=1020;
+            importo=VCMax-((VCMax-VCMin)*(VMaxIsee-isee)/(VMaxIsee-VMinIsee));
+            if(tipo==1 || tipo==3){
+                importo=(importo/100)*65;
+            }
+            importo=importo+166+16;
+
+        }
+        if(isee>30000&&isee<=50000){
+            VMaxIsee = 50000;
+            VMinIsee = 30001;
+            if(tipo==0 || tipo==1) {
+                VCMin = 1040;
+                VCMax = 1661;
+            }
+            else{
+                VCMin = 1165;
+                VCMax = 1878;
+            }
+            importo = VCMin + ((((VMaxIsee - VMinIsee) - (VMaxIsee - isee)) * (VCMax - VCMin)) / (VMaxIsee - VMinIsee));
+            if(tipo==1 || tipo==3){
+                importo=(importo/100)*65;
+            }
+            importo=importo+166+16;
+        }
+
+        if(isee>50000){
+            importo=1844;
+            if(tipo==2 || tipo==3)
+                importo=2061;
+            if(tipo==1 || tipo==3){
+                importo=(((importo-166-16)/100)*65)+166+16;
+            }
+
+
+        }
+        if(merito && importo>0)
+            if(importo-315<0)
+                importo=0;
+            else
+                importo=importo-315;
+
+        return Math.round(importo);
+    }
 
 
 }

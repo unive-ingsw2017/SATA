@@ -48,10 +48,6 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         tipo.add("Laurea magistrale / specialistica");
         tipo.add("Laurea magistrale / specialistica - Studente Part-Time");
         final List<String> anno = new ArrayList<String>();
-        anno.add("1");
-        anno.add("2");
-        anno.add("3");
-        anno.add("4 e oltre");
         final List<String> cittadinanza = new ArrayList<String>();
         cittadinanza.add("Italiana, UE");
         cittadinanza.add("extra UE con domicilio fiscale in Italia");
@@ -70,6 +66,10 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         cittSpinner.setAdapter(cittAdapter);
 
         isee.setTextColor(R.color.black);
+        //isee.setText("-10");
+        isee.setText("Inserisci il tuo ISEE");
+        tv_merito.setVisibility(View.INVISIBLE);
+        merito.setVisibility(View.INVISIBLE);
 
         //faccio un override per i metodi on click così quando clicco su un elemento fa quello che voglio
 
@@ -80,6 +80,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 //int item =tipoSpinner.getSelectedItemPosition();
                 if(position==0){
                     anno.clear();
+                    anno.add("Seleziona anno");
                     anno.add("1");
                     anno.add("2");
                     anno.add("3");
@@ -88,6 +89,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 }
                 if(position==1){
                     anno.clear();
+                    anno.add("Seleziona anno");
                     anno.add("1");
                     anno.add("2");
                     anno.add("3");
@@ -97,6 +99,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 }
                 if(position==2){
                     anno.clear();
+                    anno.add("Seleziona anno");
                     anno.add("1");
                     anno.add("2");
                     anno.add("3");
@@ -104,12 +107,14 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 }
                 if(position==3){
                     anno.clear();
+                    anno.add("Seleziona anno");
                     anno.add("1");
                     anno.add("2");
                     anno.add("3");
                     anno.add("4");
                 }
                 annoAdapter.notifyDataSetChanged();
+                annoSpinner.setSelection(0);
 
 
             }
@@ -128,94 +133,94 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 int canno=annoSpinner.getSelectedItemPosition();
                 int ccit=position;
 
-                if(ctipo==0 && canno==0 || ctipo==1 && canno==0){
+                if(ctipo==0 && canno==1 || ctipo==1 && canno==1){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("voto esame di stato da 98 a 100/100 oppure da 58 a 60/60");
                 }
-                if(ctipo==0 && canno==1){
+                if(ctipo==0 && canno==2){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("conseguiti almeno 54 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
                 // LAUREA
-                if(ctipo==0 && canno==2){
+                if(ctipo==0 && canno==3){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("conseguiti almeno 108 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
-                if(ctipo==0 && canno>=3){
+                if(ctipo==0 && canno>=4){
                     tv_merito.setVisibility(View.INVISIBLE);
                     merito.setVisibility(View.INVISIBLE);
                 }
 
                 //LAUREA PART - TIME
-                if(ctipo==1 && canno==1){
+                if(ctipo==1 && canno==2){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("conseguiti almeno 27 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
-                if(ctipo==1 && canno==2){
-                    tv_merito.setVisibility(View.VISIBLE);
-                    merito.setVisibility(View.VISIBLE);
-
-                    merito.setText("conseguiti almeno 54 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
-                }
-
                 if(ctipo==1 && canno==3){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
-                    merito.setText("conseguiti almeno 81 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
+                    merito.setText("conseguiti almeno 54 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
 
                 if(ctipo==1 && canno==4){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
+                    merito.setText("conseguiti almeno 81 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
+                }
+
+                if(ctipo==1 && canno==5){
+                    tv_merito.setVisibility(View.VISIBLE);
+                    merito.setVisibility(View.VISIBLE);
+
                     merito.setText("conseguiti almeno 108 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
-                if(ctipo==1 && canno>=5){
+                if(ctipo==1 && canno>=6){
                     tv_merito.setVisibility(View.INVISIBLE);
                     merito.setVisibility(View.INVISIBLE);
                 }
 
                 // MAGISTRALE
-                if(ctipo==2 && canno==0 || ctipo==3 && canno==0){
+                if(ctipo==2 && canno==1 || ctipo==3 && canno==1){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("ha un voto di laurea che consente l'accesso di almeno 108/110 per i corsi di Laurea magistrale di area economica e scientifica, 110/110 per i corsi di Laurea magistrale di area linguistica e umanistica");
                 }
 
-                if(ctipo==2 && canno==1){
+                if(ctipo==2 && canno==2){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("conseguiti almeno 54 crediti entro il 30/09/2017 con una media ponderata di almeno: 29/30 per i corsi di laurea di area economica, 30/30 per i corsi di laurea di area linguistica, scientifica o umanistica" );
                 }
-                if(ctipo==2 && canno>=2){
+                if(ctipo==2 && canno>=3){
                     tv_merito.setVisibility(View.INVISIBLE);
                     merito.setVisibility(View.INVISIBLE);
                 }
                 //PART-TIME
-                if(ctipo==3 && canno==1){
+                if(ctipo==3 && canno==2){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("conseguiti almeno 27 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
-                if(ctipo==1 && canno==2){
+                if(ctipo==3 && canno==3){
                     tv_merito.setVisibility(View.VISIBLE);
                     merito.setVisibility(View.VISIBLE);
 
                     merito.setText("conseguiti almeno 54 crediti entro il 30/09/2017 con una media ponderata di almeno: 28/30 per i corsi di laurea di area economica, 29/30 per i corsi di laurea di area linguistica o scientifica, 30/30 per i corsi di laurea di area umanistica" );
                 }
-                if(ctipo==3 && canno>=3){
+                if(ctipo==3 && canno>=4){
                     tv_merito.setVisibility(View.INVISIBLE);
                     merito.setVisibility(View.INVISIBLE);
                 }
@@ -233,6 +238,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 2){
+                    isee.setText("Inserisci il tuo ISEE");
                     isee.setVisibility(View.INVISIBLE);
                     calISEE.setVisibility(View.INVISIBLE);
                 }
@@ -257,21 +263,63 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             }
         });
 
+
+
        calcola.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float val_isee=Float.parseFloat(isee.getText().toString());
+                float val_isee;
                 int tipo=tipoSpinner.getSelectedItemPosition();
                 int citt=cittSpinner.getSelectedItemPosition();
                 boolean mer=merito.isChecked();
-                float importo=calcola(val_isee,tipo,citt,mer);
-                Toast.makeText(CalcoloTaxActivity.this,"Tasse calcolate: "+importo, Toast.LENGTH_SHORT).show();
+                //float importo=calcola(val_isee,tipo,citt,mer);
+                float importo=0;
+                if(tryParseInt(isee.getText().toString()))
+                    val_isee=Float.parseFloat(isee.getText().toString());
+                else
+                    val_isee=-10;
+                if(val_isee<0) {
+                    if (citt != 2)
+                        Toast.makeText(CalcoloTaxActivity.this, "Inserisci tutti i parametri", Toast.LENGTH_SHORT).show();
+                    else {
+                        importo = calcolaExtra(tipo, mer);
+                        Toast.makeText(CalcoloTaxActivity.this, "Tasse calcolate: " + importo, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    importo = calcola(val_isee, tipo, citt, mer);
+                    Toast.makeText(CalcoloTaxActivity.this, "Tasse calcolate: " + importo, Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
 
     }
 
+    boolean tryParseInt(String value) {
+        try {
+            Float.parseFloat(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public float calcolaExtra(int tipo, boolean merito){
+        float importo=1900;
+        if(tipo==2||tipo==3)
+            importo=2100;
+        if(tipo==1 || tipo==3){
+            importo=(((importo-166-16)/100)*65)+166+16;
+        }
+        if(merito && importo>0)
+            if(importo-315<0)
+                importo=0;
+            else
+                importo=importo-315;
+
+        return Math.round(importo);
+    }
 
     public float calcola(float isee, int tipo, int citt,boolean merito){
         float importo=0;
@@ -280,15 +328,6 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         float VMaxIsee;
         float VMinIsee;
 
-        if(citt==2){
-            importo=1900;
-            if(tipo==2||tipo==3)
-                importo=2100;
-            if(tipo==1 || tipo==3){
-                importo=(((importo-166-16)/100)*65)+166+16;
-            }
-
-        }
 
         if(isee>0&&isee<=1300){
             importo=166+16;

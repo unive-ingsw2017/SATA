@@ -303,7 +303,10 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                     importo = calcola(val_isee, tipo, citt, mer);
                     Toast.makeText(CalcoloTaxActivity.this, "Tasse calcolate: " + importo, Toast.LENGTH_SHORT).show();
                 }
-
+                /*Se non va togli 3 righe
+                Intent intent = new Intent(CalcoloTaxActivity.this, InfoUniActivity.class);
+                intent.putExtra("TAX",importo);
+                startActivity(intent);*/
             }
         });
 

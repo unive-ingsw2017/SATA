@@ -82,7 +82,6 @@ public class SelectUniActivity extends Activity {
             }
 
         });
-        adapter.notifyDataSetChanged();
     }
 
     public void sendName(View view) {

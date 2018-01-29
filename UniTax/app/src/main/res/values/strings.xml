@@ -27,6 +27,7 @@
     <string name="tipologiacorso">Tipologia corso di studio</string>
     <string name="citt">Cittadinanza</string>
     <string name="annofreq">Anno di iscrizione</string>
+    <string name="mer">Merito:</string>
 
 
     <!--Stringhe per un altra activity-->

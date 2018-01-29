@@ -28,6 +28,8 @@
     <string name="citt">Cittadinanza</string>
     <string name="annofreq">Anno di iscrizione</string>
     <string name="mer">Merito:</string>
+    <string name="calISEE">Calcola ISEE</string>
+
 
 
     <!--Stringhe per un altra activity-->

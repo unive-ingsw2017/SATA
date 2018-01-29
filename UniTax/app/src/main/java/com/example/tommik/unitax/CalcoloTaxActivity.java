@@ -2,11 +2,14 @@ package com.example.tommik.unitax;
 
 //WORK IN PROGRESS
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,6 +34,8 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         final CheckBox merito=(CheckBox) findViewById(R.id.checkMerito);
 
         final EditText isee=(EditText)findViewById(R.id.edit_ISEE);
+
+        final Button calISEE=(Button)findViewById(R.id.calISEE);
 
 
 
@@ -236,9 +241,11 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 2){
                     isee.setVisibility(View.INVISIBLE);
+                    calISEE.setVisibility(View.INVISIBLE);
                 }
                 else{
                     isee.setVisibility(View.VISIBLE);
+                    calISEE.setVisibility(View.VISIBLE);
                 }
 
             }
@@ -249,7 +256,13 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             }
         });
 
-
+        calISEE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri=Uri.parse("http://www.pmi.it/impresa/contabilita-e-fisco/approfondimenti/143049/calcolo-isee-simulatore-inps-online.html");
+                startActivity(new Intent(Intent.ACTION_VIEW,uri));
+            }
+        });
 
 
 

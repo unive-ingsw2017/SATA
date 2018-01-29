@@ -67,7 +67,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
 
         isee.setTextColor(R.color.black);
         //isee.setText("-10");
-        isee.setText("Inserisci il tuo ISEE");
+        isee.setText("");
         tv_merito.setVisibility(View.INVISIBLE);
         merito.setVisibility(View.INVISIBLE);
 
@@ -238,7 +238,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 2){
-                    isee.setText("Inserisci il tuo ISEE");
+                    isee.setText("");
                     isee.setVisibility(View.INVISIBLE);
                     calISEE.setVisibility(View.INVISIBLE);
                 }
@@ -295,6 +295,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         });
 
     }
+
 
     boolean tryParseInt(String value) {
         try {

@@ -34,6 +34,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         //Inizializzo gli elementi del layout
         final TextView tv_merito=(TextView)findViewById(R.id.tv_merito);
         final TextView tv_isee=(TextView)findViewById(R.id.tv_isee);
+        final TextView tv_info=(TextView)findViewById(R.id.tv_infotasse);
         final CheckBox merito=(CheckBox) findViewById(R.id.checkMerito);
         final EditText isee=(EditText)findViewById(R.id.edit_ISEE);
         final Button calISEE=(Button)findViewById(R.id.calISEE);
@@ -256,11 +257,21 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 //Another interface callback
             }
         });
+
         //Se premo sul bottone calcolca isee mi si apre la pagina con il simulatore per il calcolo dell'isee
         calISEE.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Uri uri=Uri.parse("http://www.pmi.it/impresa/contabilita-e-fisco/approfondimenti/143049/calcolo-isee-simulatore-inps-online.html");
+                startActivity(new Intent(Intent.ACTION_VIEW,uri));
+            }
+        });
+
+        //Se premo sulla textview mi si apre la pagina con le info
+        tv_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri=Uri.parse("http://www.unive.it/pag/7964/");
                 startActivity(new Intent(Intent.ACTION_VIEW,uri));
             }
         });

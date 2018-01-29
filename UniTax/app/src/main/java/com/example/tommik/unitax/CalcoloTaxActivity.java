@@ -33,6 +33,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
 
         //Inizializzo gli elementi del layout
         final TextView tv_merito=(TextView)findViewById(R.id.tv_merito);
+        final TextView tv_isee=(TextView)findViewById(R.id.tv_isee);
         final CheckBox merito=(CheckBox) findViewById(R.id.checkMerito);
         final EditText isee=(EditText)findViewById(R.id.edit_ISEE);
         final Button calISEE=(Button)findViewById(R.id.calISEE);
@@ -240,6 +241,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 if(position == 2){
                     isee.setText("");
                     isee.setVisibility(View.INVISIBLE);
+                    tv_isee.setVisibility(View.INVISIBLE);
                     calISEE.setVisibility(View.INVISIBLE);
                 }
                 else{
@@ -311,7 +313,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         if(tipo==2||tipo==3)
             importo=2100;
         if(tipo==1 || tipo==3){
-            importo=(((importo-166-16)/100)*65)+166+16;
+            importo=(importo/100)*65;
         }
         if(merito && importo>0)
             if(importo-315<0)

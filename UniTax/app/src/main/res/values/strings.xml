@@ -20,6 +20,8 @@
     <string name="btn_tax_desc">Info su come vengono utilizzate le tasse</string>
     <string name="btn_tax_scon">Non sai quanto spendi?</string>
     <string name="btn_tax_scon_desc">Link calcolo tasse</string>
+    <string name="costi_totali">Costi Totali</string>
+    <string name="proventi_totali">Proventi Totali</string>
 
     <!-- Stringhe CalcoloTasseActivity -->
     <string name="tipologiacorso">Tipologia corso di studio</string>
@@ -30,6 +32,9 @@
     <!--Stringhe per un altra activity-->
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
     <string name="calcola_tasse">calcola tasse</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

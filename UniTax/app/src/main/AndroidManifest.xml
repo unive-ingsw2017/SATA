@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tommik.unitax">
-    
+
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -15,13 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TutorialActivity" />
-        <activity android:name=".SelectUniActivity" />
-        <activity android:name=".InfoUniActivity" />
-        <activity android:name=".ResultTaxActivity" />
-        <activity android:name=".CalcoloTaxActivity" />
-        <activity android:name=".GraphActivity" />
-        <activity android:name=".GraphWithTaxActivity"></activity>
+        <activity android:name=".GraphActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TutorialActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CalcoloTaxActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ResultTaxActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".InfoUniActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SelectUniActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

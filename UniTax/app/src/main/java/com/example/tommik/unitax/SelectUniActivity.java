@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SelectUniActivity extends Activity {
 
@@ -66,9 +67,14 @@ public class SelectUniActivity extends Activity {
                 itemValue    = (String) lv.getItemAtPosition(position);
 
                 //Passo il valore all'activity successiva
-                Intent intent = new Intent(SelectUniActivity.this, InfoUniActivity.class);
-                intent.putExtra("NOME_UNI",itemValue);
-                startActivity(intent);
+                if(position==0) {
+                    Intent intent = new Intent(SelectUniActivity.this, InfoUniActivity.class);
+                    intent.putExtra("NOME_UNI", itemValue);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(SelectUniActivity.this, "Dati non ancora disponibili", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });

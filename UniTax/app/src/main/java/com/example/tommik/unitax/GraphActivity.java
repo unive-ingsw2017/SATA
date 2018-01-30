@@ -25,23 +25,22 @@ public class GraphActivity extends AppCompatActivity{
     PieChart chart;
     String graph_label;
     List<PieEntry> pieEntries;
-    List<PieData> cost_data;
-    List<PieData> prov_data;
+    List<PieData> data;
 
 
     private  static final int[] palette = {Color.rgb(0, 153, 0),Color.rgb(255, 217, 0),
             Color.rgb(51, 102, 255),Color.rgb(204, 0, 0),Color.rgb(0,153,0),
             Color.rgb(255,153,0),Color.rgb(51,204,253),Color.rgb(204,0,255)};
 
-    private static final int[] DETTAGLI_COSTI = {R.raw.costi_totali1719,
+    private static final int[] COSTI = {R.raw.costi_totali1719,
             R.raw.costi_gestione_corrente1719, R.raw.costi_personale1719};
-    private static final int[] DETTAGLI_PROVENTI = {R.raw.proventi_totali1719,
+    private static final int[] PROVENTI = {R.raw.proventi_totali1719,
             R.raw.proventi_propri1719, R.raw.proventi_contributi1719};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        prov_data = new ArrayList<>();
-        cost_data = new ArrayList<>();
+        int[] res_csv;
+        data = new ArrayList<>();
 
         //crea la activity e prende il documento
         super.onCreate(savedInstanceState);
@@ -49,16 +48,17 @@ public class GraphActivity extends AppCompatActivity{
 
         Intent intent = getIntent();
         graph_label = (String) intent.getExtras().get("graph_label");
-
-        for(int i = 0; i<DETTAGLI_PROVENTI.length;i++){
-            prov_data.add(setupPieData(DETTAGLI_PROVENTI[i]));
+        if(graph_label.equals("Costi")){
+            res_csv = COSTI;
+        }
+        else{
+            res_csv = PROVENTI;
+        }
+        for(int i = 0; i< res_csv.length; i++){
+            data.add(setupPieData(res_csv[i]));
         }
 
-        for(int i = 0; i<DETTAGLI_COSTI.length;i++){
-            cost_data.add(setupPieData(DETTAGLI_COSTI[i]));
-        }
-
-        setupChart(cost_data.get(1));
+        setupChart(data.get(0));
     }
 
     private void setupChart(PieData data){
@@ -76,7 +76,8 @@ public class GraphActivity extends AppCompatActivity{
         chart.animateY(1500);
     }
 
-    /*crea i PieData, ogni PieData deve quindi solo essere aggiunto al chart per essere visualizzato*/
+    /*crea i PieData, ogni PieData è un grafico che per essere visualizzato verrà aggiunto
+    * al grafico dalla setupchart*/
 
     public PieData setupPieData(int resource){
         pieEntries = new ArrayList<>();

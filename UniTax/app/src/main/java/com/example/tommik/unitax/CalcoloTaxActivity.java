@@ -284,7 +284,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 int tipo=tipoSpinner.getSelectedItemPosition();
                 int citt=cittSpinner.getSelectedItemPosition();
                 boolean mer=merito.isChecked();
-                //float importo=calcola(val_isee,tipo,citt,mer);
+                Intent intent = new Intent();
                 float importo=0;
                 if(tryParseInt(isee.getText().toString()))
                     val_isee=Float.parseFloat(isee.getText().toString());
@@ -296,16 +296,20 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                     else {
                         importo = calcolaExtra(tipo, mer);
                         Toast.makeText(CalcoloTaxActivity.this, "Tasse calcolate: " + importo, Toast.LENGTH_SHORT).show();
+                        intent.putExtra("TAX", Float.toString(importo));
+                        setResult(RESULT_OK, intent);
+                        finish();
                     }
                 }
                 else {
                     importo = calcola(val_isee, tipo, citt, mer);
                     Toast.makeText(CalcoloTaxActivity.this, "Tasse calcolate: " + importo, Toast.LENGTH_SHORT).show();
+                    intent.putExtra("TAX", Float.toString(importo));
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
-                Intent intent = new Intent();
-                intent.putExtra("TAX", Float.toString(importo));
-                setResult(RESULT_OK, intent);
-                finish();
+
+
             }
         });
 

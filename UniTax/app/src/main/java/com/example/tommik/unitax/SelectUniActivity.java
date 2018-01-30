@@ -14,7 +14,7 @@ import android.widget.TextView;
 public class SelectUniActivity extends Activity {
 
     private ListView listView ;
-    private int itemPosition=-1;
+    private int itemPosition;
     private String  itemValue;
 
     @Override
@@ -22,12 +22,14 @@ public class SelectUniActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_uni);
 
+
+
         // Get ListView object from xml
         listView = (ListView) findViewById(R.id.list);
 
         // Defined Array values to show in ListView
         String[] values = new String[] {
-                "Ca Foscari",
+                "UniVE",
                 "UniPD",
                 "UniVR"
         };
@@ -76,18 +78,16 @@ public class SelectUniActivity extends Activity {
                 // ListView Clicked item value
                 itemValue    = (String) listView.getItemAtPosition(position);
 
+                Intent intent = new Intent(SelectUniActivity.this, InfoUniActivity.class);
+                intent.putExtra("NOME_UNI",itemValue);
+                startActivity(intent);
+
                 // Show Alert
                 //Toast.makeText(getApplicationContext(), "Hai selezionato: " +itemValue , Toast.LENGTH_LONG).show();
 
             }
 
         });
-    }
-
-    public void sendName(View view) {
-        Intent intent = new Intent(this, InfoUniActivity.class);
-        intent.putExtra("NOME_UNI",itemValue);
-        startActivity(intent);
     }
 
 }

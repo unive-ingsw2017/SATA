@@ -19,7 +19,6 @@
         <activity android:name=".TutorialActivity" />
         <activity android:name=".SelectUniActivity" />
         <activity android:name=".InfoUniActivity" />
-        <activity android:name=".DataTaxActivity" />
         <activity android:name=".ResultTaxActivity" />
         <activity android:name=".CalcoloTaxActivity" />
         <activity android:name=".GraphActivity"></activity>

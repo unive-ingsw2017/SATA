@@ -27,33 +27,16 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="0dp"
-        android:layout_height="165dp"
+        android:layout_height="275dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:listSelector="@drawable/list_view_selector"
         android:choiceMode="singleChoice"
+        android:listSelector="@drawable/list_view_selector"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39"
-        ></ListView>
-
-    <Button
-        android:id="@+id/buttonSelectUni"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/invia_uni_selezionata"
-        android:onClick="sendName"
-        android:text="@string/ok"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78" />
+        app:layout_constraintVertical_bias="0.64"></ListView>
 
 </android.support.constraint.ConstraintLayout>

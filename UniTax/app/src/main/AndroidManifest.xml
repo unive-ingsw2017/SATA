@@ -15,12 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TutorialActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".SelectUniActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".InfoUniActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ResultTaxActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".CalcoloTaxActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".GraphActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".TutorialActivity" />
+        <activity android:name=".SelectUniActivity" />
+        <activity android:name=".InfoUniActivity" />
+        <activity android:name=".ResultTaxActivity" />
+        <activity android:name=".CalcoloTaxActivity" />
+        <activity android:name=".GraphActivity" />
+        <activity android:name=".GraphWithTaxActivity"></activity>
     </application>
 
 </manifest>

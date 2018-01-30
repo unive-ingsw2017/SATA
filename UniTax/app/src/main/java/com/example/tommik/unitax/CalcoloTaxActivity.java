@@ -283,7 +283,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 boolean mer=merito.isChecked();
                 Intent intent = new Intent();
                 float importo=0;
-                if(tryParseInt(isee.getText().toString()))
+                if(tryParseFloat(isee.getText().toString()))
                     val_isee=Float.parseFloat(isee.getText().toString());
                 else
                     val_isee=-10;
@@ -313,7 +313,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
     }
 
 
-    boolean tryParseInt(String value) {
+    boolean tryParseFloat(String value) {
         try {
             Float.parseFloat(value);
             return true;

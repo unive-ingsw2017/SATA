@@ -33,8 +33,6 @@
     <string name="info">Info tasse</string>
 
 
-
-
     <!--Stringhe per un altra activity-->
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
     <string name="calcola_tasse">calcola tasse</string>

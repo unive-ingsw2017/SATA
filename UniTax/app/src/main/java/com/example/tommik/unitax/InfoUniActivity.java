@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class InfoUniActivity extends AppCompatActivity {
-    Button cal, prov_button, cost_button;
+    Button cal, prov_button, cost_button, view_tax_button;
     EditText edit_tax;
 
     private static final String TAG = "InfoUniActivity";
@@ -70,6 +70,16 @@ public class InfoUniActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(InfoUniActivity.this, GraphActivity.class);
                 intent.putExtra("graph_label","Costi");
+                startActivity(intent);
+            }
+        });
+
+        view_tax_button = (Button) findViewById(R.id.viewinfotax);
+        view_tax_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(InfoUniActivity.this, GraphWithTaxActivity.class);
+                intent.putExtra("tax_val", edit_tax.getText());
                 startActivity(intent);
             }
         });

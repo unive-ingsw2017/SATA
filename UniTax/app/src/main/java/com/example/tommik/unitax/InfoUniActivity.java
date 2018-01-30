@@ -26,35 +26,35 @@ public class InfoUniActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_uni);
 
+        // Dichiaro gli elementi del layout
+        cal = (Button) findViewById(R.id.tassescon);
         edit_tax=(EditText)findViewById(R.id.edit_tax);
+        prov_button = (Button) findViewById(R.id.provbut);
+        cost_button = (Button) findViewById(R.id.costbut);
 
-        // Get the Intent that started this activity and extract the string
+        // Ricavo il nome dell'università dall'intent passato dalla pagina precedente
         Intent intent = getIntent();
         String message = intent.getExtras().getString("NOME_UNI");
 
 
-        // Capture the layout's TextView and set the string as its text
+        //Modifico la text view con il nome dell'università
         TextView textView = (TextView) findViewById(R.id.NameUni);
         textView.setText(message);
         edit_tax.setTextColor(Color.BLACK);
 
 
+        //Imposto i Listener per quando vengono cliccati i vari bottoni
 
-
-        cal = (Button) findViewById(R.id.tassescon);
+        //Apre l'activity per il calcolo delle tasse e si aspetta un valore come ritorno che verrà messo nell edit text
         cal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //Intent intent = new Intent(InfoUniActivity.this, CalcoloTaxActivity.class);
-               //startActivity(intent);
                 Intent intent = new Intent(InfoUniActivity.this, CalcoloTaxActivity.class);
                 startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);
             }
         });
 
-
-
-        prov_button = (Button) findViewById(R.id.provbut);
+        //Apre la label per il grafico proventi
         prov_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,7 +64,7 @@ public class InfoUniActivity extends AppCompatActivity {
             }
         });
 
-        cost_button = (Button) findViewById(R.id.costbut);
+        //Apre la label per il grafico costi
         cost_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +75,7 @@ public class InfoUniActivity extends AppCompatActivity {
         });
     }
 
+    //metodo per ricevere i dati di ritorno e settare il valore nella edit text
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

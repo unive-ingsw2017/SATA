@@ -78,7 +78,6 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //int item =tipoSpinner.getSelectedItemPosition();
                 if(position==0){
                     anno.clear();
                     anno.add("Seleziona anno");
@@ -116,8 +115,6 @@ public class CalcoloTaxActivity extends AppCompatActivity {
                 }
                 annoAdapter.notifyDataSetChanged();
                 annoSpinner.setSelection(0);
-
-
             }
 
             @Override
@@ -126,7 +123,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
             }
         });
 
-        //Se seleziono un valore sullo spinner anno vedo o meno la checkbox di merito
+        //Se seleziono un valore sullo spinner anno cambia la checkbox di merito
         annoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -276,7 +273,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         });
 
 
-
+        //una volta inseriti tutti i parametri se premo su calcola ritorno il valore all'Activity precedente
        calcola.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -325,6 +322,8 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         }
     }
 
+
+    // Matematica per calcolare l'importo delle tasse
     public float calcolaExtra(int tipo, boolean merito){
         float importo=1900;
         if(tipo==2||tipo==3)

@@ -9,19 +9,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/UniTaxTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TutorialActivity" />
-        <activity android:name=".SelectUniActivity" />
-        <activity android:name=".InfoUniActivity" />
-        <activity android:name=".ResultTaxActivity" />
-        <activity android:name=".CalcoloTaxActivity" />
-        <activity android:name=".GraphActivity"></activity>
+        <activity android:name=".TutorialActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".SelectUniActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".InfoUniActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".ResultTaxActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".CalcoloTaxActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".GraphActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -21,6 +21,13 @@ public class AboutUsActivity extends AppCompatActivity {
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
                 .setImage(R.drawable.sata)
+                .setDescription("SATA\n" +
+                        "\n" +
+                        "Susanna, Andrea, Tommaso, Alessandro.\n" +
+                        "Siamo quattro ragazzi dell'Università Ca' Foscari iscritti al Corso di Laurea di Informatica!\n" +
+                        "Quest'applicazione è il frutto del corso Ingegneria del Software, tenuto dal prof. Cortesi.\n" +
+                        "Il nostro obiettivo è creare un'app che permetta a chiunque di avere maggiori informazioni sul bilancio economico dell'università, rapportato all'importo delle tasse.\n" +
+                        "Questo progetto è stato realizzato utilizzando gli Open Data forniti dall'Ateneo.")
                 .addItem(new Element().setTitle("Versione 1.0"))
                 .addGroup("Connettiti con noi")
                 .addEmail("856329@stud.unive.it","Email")

@@ -6,10 +6,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InfoUniActivity extends AppCompatActivity {
     Button cal, prov_button, cost_button, view_tax_button;
@@ -81,11 +85,30 @@ public class InfoUniActivity extends AppCompatActivity {
         view_tax_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InfoUniActivity.this, GraphWithTaxActivity.class);
-                intent.putExtra("tax_val", edit_tax.getText());
-                startActivity(intent);
+                float tax=0;
+                if(tryParseFloat(edit_tax.getText().toString()))
+                    tax=Float.parseFloat(edit_tax.getText().toString());
+                else
+                    tax=-10;
+                if(tax<0){
+                    Toast.makeText(InfoUniActivity.this, "Inserisci tutti i parametri", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(InfoUniActivity.this, GraphWithTaxActivity.class);
+                    intent.putExtra("tax_val", edit_tax.getText());
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    boolean tryParseFloat(String value) {
+        try {
+            Float.parseFloat(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     //metodo per ricevere i dati di ritorno e settare il valore nella edit text
@@ -102,5 +125,31 @@ public class InfoUniActivity extends AppCompatActivity {
                 edit_tax.setText(tax);
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id=item.getItemId();
+        switch(id)
+        {
+            case R.id.MENU_1:
+                Intent intent = new Intent(InfoUniActivity.this, IntroActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.MENU_2:
+                Intent intent2 = new Intent(InfoUniActivity.this, AboutUsActivity.class);
+                startActivity(intent2);
+                break;
+        }
+        return false;
     }
 }

@@ -31,13 +31,16 @@
     <string name="calISEE">Calcola ISEE</string>
     <string name="info">Info tasse</string>
 
+    <!-- Stringhe AboutUsActivity-->
+    <string name="about">About us</string>
+
 
     <!--Stringhe varie-->
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
     <string name="calcola_tasse">calcola tasse</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 
 </resources>

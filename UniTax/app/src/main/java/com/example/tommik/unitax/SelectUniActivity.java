@@ -107,9 +107,9 @@ public class SelectUniActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.MENU_2:
-			/*
-			 	Codice di gestione della voce MENU_2
-			 */
+                Intent intent2 = new Intent(SelectUniActivity.this, AboutUsActivity.class);
+                startActivity(intent2);
+                break;
         }
         return false;
     }

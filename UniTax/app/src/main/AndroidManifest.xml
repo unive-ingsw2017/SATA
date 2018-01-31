@@ -8,20 +8,34 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/UniTaxTheme">
-        <activity android:name=".SplashScreen" android:screenOrientation="portrait">
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GraphActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".CalcoloTaxActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".ResultTaxActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".InfoUniActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".SelectUniActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".GraphWithTaxActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".IntroActivity" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".GraphActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalcoloTaxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InfoUniActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SelectUniActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".GraphWithTaxActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".IntroActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AboutUsActivity"></activity>
     </application>
 
 </manifest>

@@ -36,23 +36,20 @@ public class GraphWithTaxActivity extends AppCompatActivity {
     private PieChart chart;
     private Float totale_assoluto;
     private Float tasse_assolute;
-    List<PieData> data;
-    List<PieEntry> pieEntries;
-    List<Float> multiplier;
-    List<Float> totali;
-    Float tax;
+    private Float altro_totale;
+    private PieData altro_data;
 
     //variabili per il listListener
     ListView listView;
 
     private  static final int[] palette = {Color.rgb(0, 153, 0),Color.rgb(255, 217, 0),
-            Color.rgb(51, 102, 255),Color.rgb(204, 0, 0),Color.rgb(0,153,0),
+            Color.rgb(51, 102, 255),Color.rgb(204, 0, 0),Color.rgb(0, 204, 153),
             Color.rgb(255,153,0),Color.rgb(51,204,253),Color.rgb(204,0,255)};
 
     private static final int[] COSTI = {R.raw.costi_totali1719,
             R.raw.costi_gestione_corrente1719, R.raw.costi_personale1719};
 
-    private static final String[] DETAIL_COST_LIST = {"COSTI TOTALI","COSTI GESTIONE CORRENTE","COSTI PERSONALE"};
+    private static final String[] DETAIL_COST_LIST = {"COSTI TOTALI","COSTI GESTIONE CORRENTE","COSTI PERSONALE","ALTRO"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,27 +58,14 @@ public class GraphWithTaxActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        CsvRowParser parser = new CsvRowParser(new InputStreamReader(
-                getResources().openRawResource(COSTI[0])), true, ",");
+        Intent intent = getIntent();
+        String temp_tax = intent.getExtras().get("tax_val").toString();
 
-        //creazione della Lista di righe, ogni riga è una entry della tabella
-        List<CsvRowParser.Row> rows = null;
-        try {
-            rows = parser.getAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        totale_assoluto = 0f;
-        //creazione lista di pieEntries
-        for (CsvRowParser.Row entry : rows){
-            totale_assoluto+=Float.parseFloat(entry.get(1));
-        }
+        tasse_assolute = Float.parseFloat(temp_tax);
 
-        creaPieData();
 
-        setupChart(data.get(0));
+        totale_assoluto = sum(COSTI[0]);
+        creaPieData(COSTI[0]);
         setListListener(DETAIL_COST_LIST);
     }
 
@@ -90,10 +74,8 @@ public class GraphWithTaxActivity extends AppCompatActivity {
 
     /*dato un resource file e i totali delle spese e quelli relativi delle tase,
     * crea i PieData che verranno caricati nel grafico*/
-    public PieData creaPieDataApp(int resource, Float totale, Float totale_tasse){
-        pieEntries = new ArrayList<>();
-        List<String> descrizioni =  new ArrayList<>();
-        List<Float> importi = new ArrayList<>();
+    public void creaPieDataApp(int resource, Float totale, Float tasse){
+        List<PieEntry> pieEntries = new ArrayList<>();
 
         //creazione del parser
         CsvRowParser parser = new CsvRowParser(new InputStreamReader(
@@ -109,17 +91,38 @@ public class GraphWithTaxActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //creazione lista di pieEntries
+        List<PieEntry> altroEntries = new ArrayList<>();
+        altro_totale = 0f;
+
         for (CsvRowParser.Row entry : rows){
 
-            pieEntries.add(new PieEntry((Float.parseFloat(entry.get(1)
-                    .replace(".","")) /totale)*totale_tasse,entry.get(0)));
+            String descrizione = entry.get(0);
+            Float importo = (Float.parseFloat(entry.get(1).replace(".","")));
+            Log.d(TAG,Float.toString(importo));
+            Log.d(TAG, Float.toString(0.05f*totale));
+
+
+            if(importo < 0.05*totale){
+                altroEntries.add(new PieEntry((importo/totale)*tasse,descrizione.toUpperCase()));
+                altro_totale += (importo/totale)*tasse;
+            }
+            else
+                pieEntries.add(new PieEntry((importo/totale)*tasse,descrizione.toUpperCase()));
+        }
+        if(altroEntries.size() > 1){
+            pieEntries.add(new PieEntry(altro_totale, "ALTRO"));
+            PieDataSet dataSet = new PieDataSet(altroEntries,"");
+            dataSet.setColors(palette);
+            altro_data = new PieData(dataSet);
+        }
+        else if(pieEntries.size() == 1){
+            pieEntries.add(altroEntries.get(0));
         }
 
         PieDataSet dataSet = new PieDataSet(pieEntries,"");
         dataSet.setColors(palette);
 
-        return new PieData(dataSet);
+        setupChart(new PieData(dataSet));
     }
 
 
@@ -127,36 +130,17 @@ public class GraphWithTaxActivity extends AppCompatActivity {
 
 
     //calcola i totali RELATIVI alle tasse e crea i piedata con la funzione creaPieDataApp();
-    public void creaPieData(){
+    public void creaPieData(int resource){
 
-        Intent intent = getIntent();
-        String temp_tax = (String) intent.getExtras().get("tax_val").toString();
-
-        tax = Float.parseFloat(temp_tax);
-
-        multiplier = new ArrayList<Float>();
-        totali = new ArrayList<Float>();
-
-        //creo un array con tutti i totali e li rapporto alle tasse
-        for(int i=0;i<COSTI.length;i++){
-            totali.add(sum(COSTI[i]));
-        }
-
-        for(int i = 0; i<totali.size();i++){
-            Log.d(TAG, Float.toString(tax));
-            multiplier.add((totali.get(i)/ totali.get(0))*tax);
-            Log.d(TAG,Float.toString(totali.get(i)) + "------" + Float.toString(multiplier.get(i)));
-        }
+        //calcolo il totale della tabella attuale
+        Float totale_relativo = sum(resource);
+        Float tasse_relative = (totale_relativo/totale_assoluto)*tasse_assolute;
 
         //assegnamento testo label
         TextView label_view = (TextView) findViewById(R.id.graph_label);
         label_view.setText("Distribuzione Tasse");
 
-        data = new ArrayList<>();
-
-        for(int i = 0; i< COSTI.length; i++){
-            data.add(creaPieDataApp(COSTI[i], totali.get(i),multiplier.get(i)));
-        }
+        creaPieDataApp(resource,totale_relativo,tasse_relative);
 
     }
 
@@ -255,11 +239,10 @@ public class GraphWithTaxActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                setupChart(data.get(position));
-
-                // Show Alert
-                //Toast.makeText(getApplicationContext(), "Hai selezionato: " +itemValue , Toast.LENGTH_LONG).show();
-
+                if(position == 3 && altro_data != null)
+                    setupChart(altro_data);
+                else
+                    creaPieData(COSTI[position]);
             }
 
         });

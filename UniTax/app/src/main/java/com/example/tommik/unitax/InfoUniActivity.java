@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InfoUniActivity extends AppCompatActivity {
     Button cal, prov_button, cost_button, view_tax_button;
@@ -84,11 +85,30 @@ public class InfoUniActivity extends AppCompatActivity {
         view_tax_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(InfoUniActivity.this, GraphWithTaxActivity.class);
-                intent.putExtra("tax_val", edit_tax.getText());
-                startActivity(intent);
+                float tax=0;
+                if(tryParseFloat(edit_tax.getText().toString()))
+                    tax=Float.parseFloat(edit_tax.getText().toString());
+                else
+                    tax=-10;
+                if(tax<0){
+                    Toast.makeText(InfoUniActivity.this, "Inserisci tutti i parametri", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent intent = new Intent(InfoUniActivity.this, GraphWithTaxActivity.class);
+                    intent.putExtra("tax_val", edit_tax.getText());
+                    startActivity(intent);
+                }
             }
         });
+    }
+
+    boolean tryParseFloat(String value) {
+        try {
+            Float.parseFloat(value);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     //metodo per ricevere i dati di ritorno e settare il valore nella edit text

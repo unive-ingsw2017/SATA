@@ -9,7 +9,6 @@
     <string name="select_uni"> Seleziona la tua università</string>
     <string name="spinner">[Seleziona un università...]</string>
     <string name="invia_uni_selezionata">invia uni selezionata</string>
-    <string name="ok">Ok</string>
 
     <!--Stringhe activity_info_uni.xml -->
     <string name="nome_universit">Nome università</string>
@@ -32,13 +31,16 @@
     <string name="calISEE">Calcola ISEE</string>
     <string name="info">Info tasse</string>
 
+    <!-- Stringhe AboutUsActivity-->
+    <string name="about">About us</string>
 
-    <!--Stringhe per un altra activity-->
+
+    <!--Stringhe varie-->
     <string name="inserisci_valore_isee">Inserisci valore ISEE</string>
     <string name="calcola_tasse">calcola tasse</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 
 
 </resources>

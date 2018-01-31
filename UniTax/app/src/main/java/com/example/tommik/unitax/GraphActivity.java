@@ -6,6 +6,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,9 +35,9 @@ public class GraphActivity extends AppCompatActivity{
 
     private PieChart chart;
     String graph_label;
-    List<PieEntry> pieEntries;
-    List<PieData> data;
-
+    PieData altrodata;
+    int altroTotale;
+    TextView label_view;
     //variabili per il listListener
     ListView listView;
     private int itemPosition;
@@ -49,13 +53,12 @@ public class GraphActivity extends AppCompatActivity{
     private static final int[] PROVENTI = {R.raw.proventi_totali1719,
             R.raw.proventi_propri1719, R.raw.proventi_contributi1719};
 
-    private static final String[] DETAIL_COST_LIST = {"COSTI GESTIONE CORRENTE","COSTI PERSONALE"};
-    private static final String[] DETAIL_PROV_LIST = {"PROVENTI PROPRI","PROVENTI CONTRIBUTI"};
+    private static final String[] DETAIL_COST_LIST = {"COSTI TOTALI","COSTI GESTIONE CORRENTE","COSTI PERSONALE","ALTRO"};
+    private static final String[] DETAIL_PROV_LIST = {"PROVENTI TOTALI","PROVENTI PROPRI","PROVENTI CONTRIBUTI","ALTRO"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int[] res_csv;
-        data = new ArrayList<>();
 
         //crea la activity e prende il documento
         super.onCreate(savedInstanceState);
@@ -66,16 +69,13 @@ public class GraphActivity extends AppCompatActivity{
         Intent intent = getIntent();
         graph_label = (String) intent.getExtras().get("graph_label");
         if(graph_label.equals("Proventi")){
-            res_csv = PROVENTI;
+            setupPieData(PROVENTI[0],DETAIL_PROV_LIST[0]);
+            setListListener(DETAIL_PROV_LIST);
         }
         else{
-            res_csv = COSTI;
+            setupPieData(COSTI[0],DETAIL_COST_LIST[0]);
+            setListListener(DETAIL_COST_LIST);
         }
-        for(int i = 0; i< res_csv.length; i++){
-            data.add(setupPieData(res_csv[i]));
-        }
-
-        setupChart(data.get(0));
     }
 
 
@@ -84,13 +84,11 @@ public class GraphActivity extends AppCompatActivity{
     private void setupChart(PieData data){
 
         //Label del grafico
-        TextView label_view = (TextView) findViewById(R.id.graph_label);
-        label_view.setText(graph_label);
 
         if(chart != null)
             chart.clear();
 
-        chart = (PieChart) findViewById(R.id.tot_chart);
+        chart = (PieChart) findViewById(R.id.chart);
         chart.setData(data);
         chart.getDescription().setEnabled(false);
         chart.getLegend().setWordWrapEnabled(true);
@@ -98,20 +96,15 @@ public class GraphActivity extends AppCompatActivity{
         chart.setEntryLabelColor(Color.rgb(0,0,0));
         chart.setHoleRadius(40);
         chart.animateY(1500);
-
-        if(graph_label.equals("Costi"))
-            setListListener(DETAIL_COST_LIST);
-        else{
-            setListListener(DETAIL_PROV_LIST);
-        }
     }
 
 
 
     /*crea i PieData, ogni PieData è un grafico che per essere visualizzato verrà aggiunto
     * al grafico dalla setupchart*/
-    public PieData setupPieData(int resource){
-        pieEntries = new ArrayList<>();
+    public void setupPieData(int resource,String label){
+        int totale = 0;
+        List<PieEntry> pieEntries = new ArrayList<>();
 
         //creazione del parser
         CsvRowParser parser = new CsvRowParser(new InputStreamReader(
@@ -127,23 +120,43 @@ public class GraphActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
+        for (CsvRowParser.Row entry : rows){
+            totale += Integer.parseInt(entry.get(1).replace(".",""));
+        }
+
+        List<PieEntry> altroEntries = new ArrayList<>();
+        altroTotale = 0;
+
         //creazione lista per il grafico
         for (CsvRowParser.Row entry : rows){
 
             String descrizione = entry.get(0);
             int importo = Integer.parseInt(entry.get(1).replace(".",""));
 
-
-
-            pieEntries.add(new PieEntry(importo,descrizione.toUpperCase()));
+            if(importo < 0.05*totale){
+                altroEntries.add(new PieEntry(importo,descrizione));
+                altroTotale += importo;
+            }
+            else
+                pieEntries.add(new PieEntry(importo,descrizione.toUpperCase()));
+        }
+        if(altroEntries.size() > 1){
+            pieEntries.add(new PieEntry(altroTotale, "ALTRO"));
+            PieDataSet dataSet = new PieDataSet(altroEntries,"");
+            dataSet.setColors(palette);
+            altrodata = new PieData(dataSet);
+        }
+        else if(pieEntries.size() == 1){
+            pieEntries.add(altroEntries.get(0));
         }
 
-        //creazione grafico
         PieDataSet dataSet = new PieDataSet(pieEntries,"");
         dataSet.setColors(palette);
-        PieData data = new PieData(dataSet);
 
-        return data;
+        label_view = (TextView) findViewById(R.id.graph_label);
+        label_view.setText(label);
+
+        setupChart(new PieData(dataSet));
     }
 
 
@@ -190,13 +203,19 @@ public class GraphActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                // ListView Clicked item index
-                itemPosition     = position;
+                Log.d(TAG, Integer.toString(position));
 
-                // ListView Clicked item value
-                itemValue    = (String) listView.getItemAtPosition(position);
-
-                setupChart(data.get(position + 1));
+                if(position == 3 && altrodata != null) {
+                    label_view.setText("ALTRO");
+                    setupChart(altrodata);
+                }
+                else{
+                    if (graph_label.equals("Costi"))
+                        setupPieData(COSTI[position], DETAIL_COST_LIST[position]);
+                    else {
+                        setupPieData(PROVENTI[position], DETAIL_PROV_LIST[position]);
+                    }
+                }
 
                 // Show Alert
                 //Toast.makeText(getApplicationContext(), "Hai selezionato: " +itemValue , Toast.LENGTH_LONG).show();
@@ -204,6 +223,32 @@ public class GraphActivity extends AppCompatActivity{
             }
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id=item.getItemId();
+        switch(id)
+        {
+            case R.id.MENU_1:
+                Intent intent = new Intent(GraphActivity.this, IntroActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.MENU_2:
+                Intent intent2 = new Intent(GraphActivity.this, AboutUsActivity.class);
+                startActivity(intent2);
+                break;
+        }
+        return false;
     }
 
 }

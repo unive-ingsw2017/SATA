@@ -3,8 +3,10 @@ package com.example.tommik.unitax;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+
 
 public class SplashScreen extends AppCompatActivity {
 
@@ -14,8 +16,7 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //final Handler handler;
-       // final int TIME_OUT = 1500;
+        final int TIME_OUT = 1500;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
 
@@ -33,12 +34,25 @@ public class SplashScreen extends AppCompatActivity {
                 //  If the activity has never started before...
                 if (isFirstStart) {
 
+
+
                     //  Launch app intro
-                    final Intent i = new Intent(SplashScreen.this, IntroActivity.class);
+                    //final Intent i = new Intent(SplashScreen.this, IntroActivity.class);
 
                     runOnUiThread(new Runnable() {
                         @Override public void run() {
-                            startActivity(i);
+                            //startActivity(i);
+                            new Handler().postDelayed(new Runnable() {
+
+                                @Override
+
+                                public void run() {
+                                    Intent i = new Intent(SplashScreen.this, IntroActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+
+                            }, TIME_OUT);
                         }
                     });
 
@@ -56,8 +70,54 @@ public class SplashScreen extends AppCompatActivity {
 
         // Start the thread
         t.start();
-        Intent i = new Intent(SplashScreen.this, SelectUniActivity.class);
-        startActivity(i);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+
+            public void run() {
+                Intent i = new Intent(SplashScreen.this, SelectUniActivity.class);
+                startActivity(i);
+                finish();
+            }
+
+        }, TIME_OUT);
 
     }
 }
+
+
+/*public class SplashScreen extends AppCompatActivity {
+
+
+
+    @Override
+
+    protected void onCreate(Bundle savedInstanceState) {
+
+        final int TIME_OUT = 4000;
+
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_splashscreen);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+
+            public void run() {
+
+                Intent i = new Intent(SplashScreen.this, SelectUniActivity.class);
+
+                startActivity(i);
+
+                finish();
+
+            }
+
+        }, TIME_OUT);
+
+    }
+
+}
+*/

@@ -34,6 +34,8 @@ public class GraphWithTaxActivity extends AppCompatActivity {
     private static final String TAG = "GraphWithTaxActivity";
 
     private PieChart chart;
+    private Float totale_assoluto;
+    private Float tasse_assolute;
     List<PieData> data;
     List<PieEntry> pieEntries;
     List<Float> multiplier;
@@ -58,6 +60,24 @@ public class GraphWithTaxActivity extends AppCompatActivity {
         setContentView(R.layout.activity_graph);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
+        CsvRowParser parser = new CsvRowParser(new InputStreamReader(
+                getResources().openRawResource(COSTI[0])), true, ",");
+
+        //creazione della Lista di righe, ogni riga è una entry della tabella
+        List<CsvRowParser.Row> rows = null;
+        try {
+            rows = parser.getAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        totale_assoluto = 0f;
+        //creazione lista di pieEntries
+        for (CsvRowParser.Row entry : rows){
+            totale_assoluto+=Float.parseFloat(entry.get(1));
+        }
 
         creaPieData();
 
@@ -105,26 +125,6 @@ public class GraphWithTaxActivity extends AppCompatActivity {
 
 
 
-    //Dato un oggetto di tipo PieData ne crea il grafico
-    private void setupChart(PieData data){
-
-        chart = (PieChart) findViewById(R.id.chart);
-
-        if(chart != null)
-            chart.clear();
-
-        chart.setData(data);
-        chart.getDescription().setEnabled(false);
-        chart.getLegend().setWordWrapEnabled(true);
-        chart.setDrawEntryLabels(false);
-        chart.setEntryLabelColor(Color.rgb(0,0,0));
-        chart.setHoleRadius(40);
-        chart.animateY(1500);
-        chart.invalidate();
-    }
-
-
-
 
     //calcola i totali RELATIVI alle tasse e crea i piedata con la funzione creaPieDataApp();
     public void creaPieData(){
@@ -160,6 +160,26 @@ public class GraphWithTaxActivity extends AppCompatActivity {
 
     }
 
+
+
+
+    //Dato un oggetto di tipo PieData ne crea il grafico
+    private void setupChart(PieData data){
+
+        chart = (PieChart) findViewById(R.id.chart);
+
+        if(chart != null)
+            chart.clear();
+
+        chart.setData(data);
+        chart.getDescription().setEnabled(false);
+        chart.getLegend().setWordWrapEnabled(true);
+        chart.setDrawEntryLabels(false);
+        chart.setEntryLabelColor(Color.rgb(0,0,0));
+        chart.setHoleRadius(40);
+        chart.animateY(1500);
+        chart.invalidate();
+    }
 
 
 

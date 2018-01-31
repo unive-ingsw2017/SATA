@@ -83,7 +83,6 @@ public class GraphActivity extends AppCompatActivity{
     //Dato un oggetto di tipo PieData ne crea il grafico
     private void setupChart(PieData data){
 
-        //Label del grafico
 
         if(chart != null)
             chart.clear();

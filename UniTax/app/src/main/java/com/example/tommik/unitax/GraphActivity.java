@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -59,6 +60,8 @@ public class GraphActivity extends AppCompatActivity{
         //crea la activity e prende il documento
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         Intent intent = getIntent();
         graph_label = (String) intent.getExtras().get("graph_label");

@@ -16,11 +16,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".GraphActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".TutorialActivity" android:screenOrientation="portrait"/>
         <activity android:name=".CalcoloTaxActivity" android:screenOrientation="portrait"/>
         <activity android:name=".ResultTaxActivity" android:screenOrientation="portrait"/>
         <activity android:name=".InfoUniActivity" android:screenOrientation="portrait"/>
         <activity android:name=".SelectUniActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".IntroActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

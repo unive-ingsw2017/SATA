@@ -5,6 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -26,6 +29,7 @@ public class SelectUniActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_uni);
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
 
 
         // Assegno la ListView
@@ -82,6 +86,32 @@ public class SelectUniActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id=item.getItemId();
+        switch(id)
+        {
+            case R.id.MENU_1:
+                Intent intent = new Intent(SelectUniActivity.this, IntroActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.MENU_2:
+			/*
+			 	Codice di gestione della voce MENU_2
+			 */
+        }
+        return false;
     }
 
 }

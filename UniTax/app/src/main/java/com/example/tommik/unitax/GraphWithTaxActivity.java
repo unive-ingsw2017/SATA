@@ -132,7 +132,7 @@ public class GraphWithTaxActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String temp_tax = (String) intent.getExtras().get("tax_val").toString();
 
-        tax = new Float(Float.parseFloat(temp_tax));
+        tax = Float.parseFloat(temp_tax);
 
         multiplier = new ArrayList<Float>();
         totali = new ArrayList<Float>();

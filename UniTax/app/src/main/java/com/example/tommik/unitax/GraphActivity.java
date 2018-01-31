@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -34,9 +35,9 @@ public class GraphActivity extends AppCompatActivity{
 
     private PieChart chart;
     String graph_label;
-    List<PieEntry> pieEntries;
-    List<PieData> data;
-
+    PieData altrodata;
+    int altroTotale;
+    TextView label_view;
     //variabili per il listListener
     ListView listView;
     private int itemPosition;
@@ -52,13 +53,12 @@ public class GraphActivity extends AppCompatActivity{
     private static final int[] PROVENTI = {R.raw.proventi_totali1719,
             R.raw.proventi_propri1719, R.raw.proventi_contributi1719};
 
-    private static final String[] DETAIL_COST_LIST = {"COSTI TOTALI","COSTI GESTIONE CORRENTE","COSTI PERSONALE"};
-    private static final String[] DETAIL_PROV_LIST = {"PROVENTI TOTALI","PROVENTI PROPRI","PROVENTI CONTRIBUTI"};
+    private static final String[] DETAIL_COST_LIST = {"COSTI TOTALI","COSTI GESTIONE CORRENTE","COSTI PERSONALE","ALTRO"};
+    private static final String[] DETAIL_PROV_LIST = {"PROVENTI TOTALI","PROVENTI PROPRI","PROVENTI CONTRIBUTI","ALTRO"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         int[] res_csv;
-        data = new ArrayList<>();
 
         //crea la activity e prende il documento
         super.onCreate(savedInstanceState);
@@ -103,7 +103,8 @@ public class GraphActivity extends AppCompatActivity{
     /*crea i PieData, ogni PieData è un grafico che per essere visualizzato verrà aggiunto
     * al grafico dalla setupchart*/
     public void setupPieData(int resource,String label){
-        pieEntries = new ArrayList<>();
+        int totale = 0;
+        List<PieEntry> pieEntries = new ArrayList<>();
 
         //creazione del parser
         CsvRowParser parser = new CsvRowParser(new InputStreamReader(
@@ -119,20 +120,41 @@ public class GraphActivity extends AppCompatActivity{
             e.printStackTrace();
         }
 
+        for (CsvRowParser.Row entry : rows){
+            totale += Integer.parseInt(entry.get(1).replace(".",""));
+        }
+
+        List<PieEntry> altroEntries = new ArrayList<>();
+        altroTotale = 0;
+
         //creazione lista per il grafico
         for (CsvRowParser.Row entry : rows){
 
             String descrizione = entry.get(0);
             int importo = Integer.parseInt(entry.get(1).replace(".",""));
 
-            pieEntries.add(new PieEntry(importo,descrizione.toUpperCase()));
+            if(importo < 0.05*totale){
+                altroEntries.add(new PieEntry(importo,descrizione));
+                altroTotale += importo;
+            }
+            else
+                pieEntries.add(new PieEntry(importo,descrizione.toUpperCase()));
+        }
+        if(altroEntries.size() > 1){
+            pieEntries.add(new PieEntry(altroTotale, "ALTRO"));
+            PieDataSet dataSet = new PieDataSet(altroEntries,"");
+            dataSet.setColors(palette);
+            altrodata = new PieData(dataSet);
+        }
+        else if(pieEntries.size() == 1){
+            pieEntries.add(altroEntries.get(0));
         }
 
         PieDataSet dataSet = new PieDataSet(pieEntries,"");
         dataSet.setColors(palette);
 
-        TextView textView = (TextView) findViewById(R.id.graph_label);
-        textView.setText(label);
+        label_view = (TextView) findViewById(R.id.graph_label);
+        label_view.setText(label);
 
         setupChart(new PieData(dataSet));
     }
@@ -181,16 +203,18 @@ public class GraphActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
 
-                // ListView Clicked item index
-                itemPosition     = position;
+                Log.d(TAG, Integer.toString(position));
 
-                // ListView Clicked item value
-                itemValue    = (String) listView.getItemAtPosition(position);
-
-                if(graph_label.equals("Costi"))
-                    setupPieData(COSTI[position],DETAIL_COST_LIST[position]);
+                if(position == 3 && altrodata != null) {
+                    label_view.setText("ALTRO");
+                    setupChart(altrodata);
+                }
                 else{
-                    setupPieData(PROVENTI[position],DETAIL_PROV_LIST[position]);
+                    if (graph_label.equals("Costi"))
+                        setupPieData(COSTI[position], DETAIL_COST_LIST[position]);
+                    else {
+                        setupPieData(PROVENTI[position], DETAIL_PROV_LIST[position]);
+                    }
                 }
 
                 // Show Alert

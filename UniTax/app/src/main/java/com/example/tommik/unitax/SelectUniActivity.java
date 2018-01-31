@@ -1,9 +1,10 @@
 package com.example.tommik.unitax;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SelectUniActivity extends Activity {
+public class SelectUniActivity extends AppCompatActivity {
 
     //Dichiaro gli elementi del layout
     private ListView lv ;
@@ -23,6 +24,9 @@ public class SelectUniActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_uni);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
 
         // Assegno la ListView
         lv = (ListView) findViewById(R.id.list);

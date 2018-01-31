@@ -45,7 +45,7 @@ public class GraphActivity extends AppCompatActivity{
 
     //Costanti che contengono colori, file e nomi dei file
     private  static final int[] palette = {Color.rgb(0, 153, 0),Color.rgb(255, 217, 0),
-            Color.rgb(51, 102, 255),Color.rgb(204, 0, 0),Color.rgb(0,153,0),
+            Color.rgb(51, 102, 255),Color.rgb(204, 0, 0),Color.rgb(0, 204, 153),
             Color.rgb(255,153,0),Color.rgb(51,204,253),Color.rgb(204,0,255)};
 
     private static final int[] COSTI = {R.raw.costi_totali1719,
@@ -83,7 +83,6 @@ public class GraphActivity extends AppCompatActivity{
     //Dato un oggetto di tipo PieData ne crea il grafico
     private void setupChart(PieData data){
 
-        //Label del grafico
 
         if(chart != null)
             chart.clear();

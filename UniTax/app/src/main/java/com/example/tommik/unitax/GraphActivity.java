@@ -66,16 +66,13 @@ public class GraphActivity extends AppCompatActivity{
         Intent intent = getIntent();
         graph_label = (String) intent.getExtras().get("graph_label");
         if(graph_label.equals("Proventi")){
-            res_csv = PROVENTI;
+            setupPieData(PROVENTI[0],DETAIL_PROV_LIST[0]);
+            setListListener(DETAIL_PROV_LIST);
         }
         else{
-            res_csv = COSTI;
+            setupPieData(COSTI[0],DETAIL_COST_LIST[0]);
+            setListListener(DETAIL_COST_LIST);
         }
-        for(int i = 0; i< res_csv.length; i++){
-            data.add(setupPieData(res_csv[i]));
-        }
-
-        setupChart(data.get(0));
     }
 
 
@@ -84,8 +81,6 @@ public class GraphActivity extends AppCompatActivity{
     private void setupChart(PieData data){
 
         //Label del grafico
-        TextView label_view = (TextView) findViewById(R.id.graph_label);
-        label_view.setText(graph_label);
 
         if(chart != null)
             chart.clear();
@@ -98,19 +93,13 @@ public class GraphActivity extends AppCompatActivity{
         chart.setEntryLabelColor(Color.rgb(0,0,0));
         chart.setHoleRadius(40);
         chart.animateY(1500);
-
-        if(graph_label.equals("Costi"))
-            setListListener(DETAIL_COST_LIST);
-        else{
-            setListListener(DETAIL_PROV_LIST);
-        }
     }
 
 
 
     /*crea i PieData, ogni PieData è un grafico che per essere visualizzato verrà aggiunto
     * al grafico dalla setupchart*/
-    public PieData setupPieData(int resource){
+    public void setupPieData(int resource,String label){
         pieEntries = new ArrayList<>();
 
         //creazione del parser
@@ -133,17 +122,16 @@ public class GraphActivity extends AppCompatActivity{
             String descrizione = entry.get(0);
             int importo = Integer.parseInt(entry.get(1).replace(".",""));
 
-
-
             pieEntries.add(new PieEntry(importo,descrizione.toUpperCase()));
         }
 
-        //creazione grafico
         PieDataSet dataSet = new PieDataSet(pieEntries,"");
         dataSet.setColors(palette);
-        PieData data = new PieData(dataSet);
 
-        return data;
+        TextView textView = (TextView) findViewById(R.id.graph_label);
+        textView.setText(label);
+
+        setupChart(new PieData(dataSet));
     }
 
 
@@ -196,7 +184,11 @@ public class GraphActivity extends AppCompatActivity{
                 // ListView Clicked item value
                 itemValue    = (String) listView.getItemAtPosition(position);
 
-                setupChart(data.get(position));
+                if(graph_label.equals("Costi"))
+                    setupPieData(COSTI[position],DETAIL_COST_LIST[position]);
+                else{
+                    setupPieData(PROVENTI[position],DETAIL_PROV_LIST[position]);
+                }
 
                 // Show Alert
                 //Toast.makeText(getApplicationContext(), "Hai selezionato: " +itemValue , Toast.LENGTH_LONG).show();

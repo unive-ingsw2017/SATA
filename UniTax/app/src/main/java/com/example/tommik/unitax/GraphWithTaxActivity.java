@@ -139,8 +139,6 @@ public class GraphWithTaxActivity extends AppCompatActivity {
             totali.add(sum(COSTI[i]));
         }
 
-        Log.d(TAG,Float.toString(totali.size()));
-
         for(int i = 0; i<totali.size();i++){
             Log.d(TAG, Float.toString(tax));
             multiplier.add((totali.get(i)/ totali.get(0))*tax);

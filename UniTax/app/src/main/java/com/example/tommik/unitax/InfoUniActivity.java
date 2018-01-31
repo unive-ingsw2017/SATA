@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,5 +105,31 @@ public class InfoUniActivity extends AppCompatActivity {
                 edit_tax.setText(tax);
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id=item.getItemId();
+        switch(id)
+        {
+            case R.id.MENU_1:
+                Intent intent = new Intent(InfoUniActivity.this, IntroActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.MENU_2:
+                Intent intent2 = new Intent(InfoUniActivity.this, AboutUsActivity.class);
+                startActivity(intent2);
+                break;
+        }
+        return false;
     }
 }

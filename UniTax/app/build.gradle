@@ -25,9 +25,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
     testCompile 'junit:junit:4.12'
     implementation project(':datadroid')
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.github.apl-devs:appintro:v4.2.2'
 }

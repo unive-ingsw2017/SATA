@@ -350,7 +350,7 @@ public class CalcoloTaxActivity extends AppCompatActivity {
         float VMinIsee;
 
 
-        if(isee>0&&isee<=1300){
+        if(isee>0&&isee<=13000){
             importo=166+16;
         }
 

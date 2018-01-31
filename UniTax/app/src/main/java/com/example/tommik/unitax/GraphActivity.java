@@ -48,8 +48,8 @@ public class GraphActivity extends AppCompatActivity{
     private static final int[] PROVENTI = {R.raw.proventi_totali1719,
             R.raw.proventi_propri1719, R.raw.proventi_contributi1719};
 
-    private static final String[] DETAIL_COST_LIST = {"COSTI GESTIONE CORRENTE","COSTI PERSONALE"};
-    private static final String[] DETAIL_PROV_LIST = {"PROVENTI PROPRI","PROVENTI CONTRIBUTI"};
+    private static final String[] DETAIL_COST_LIST = {"COSTI TOTALI","COSTI GESTIONE CORRENTE","COSTI PERSONALE"};
+    private static final String[] DETAIL_PROV_LIST = {"PROVENTI TOTALI","PROVENTI PROPRI","PROVENTI CONTRIBUTI"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +87,7 @@ public class GraphActivity extends AppCompatActivity{
         if(chart != null)
             chart.clear();
 
-        chart = (PieChart) findViewById(R.id.tot_chart);
+        chart = (PieChart) findViewById(R.id.chart);
         chart.setData(data);
         chart.getDescription().setEnabled(false);
         chart.getLegend().setWordWrapEnabled(true);
@@ -193,7 +193,7 @@ public class GraphActivity extends AppCompatActivity{
                 // ListView Clicked item value
                 itemValue    = (String) listView.getItemAtPosition(position);
 
-                setupChart(data.get(position + 1));
+                setupChart(data.get(position));
 
                 // Show Alert
                 //Toast.makeText(getApplicationContext(), "Hai selezionato: " +itemValue , Toast.LENGTH_LONG).show();

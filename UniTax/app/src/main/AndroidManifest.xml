@@ -21,6 +21,7 @@
         <activity android:name=".ResultTaxActivity" android:screenOrientation="portrait"/>
         <activity android:name=".InfoUniActivity" android:screenOrientation="portrait"/>
         <activity android:name=".SelectUniActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".GraphWithTaxActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
